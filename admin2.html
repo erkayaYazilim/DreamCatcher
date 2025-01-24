@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dream Catcher - Yönetim Paneli</title>
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+
+  <!-- Ana site style.css -->
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <!-- styles2.css: Ek tasarımlar (Opsiyonel) -->
+  <link rel="stylesheet" href="./assets/css/styles2.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Comforter+Brush&family=Heebo:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Ionicons -->
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+  ></script>
+
+  <!-- Firebase & app.js (Firebase yapılandırmanızı app.js içinde yapınız) -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+  <script src="./assets/js/app.js"></script>
+
+  <style>
+    /* Basit bir yönetim paneli stili */
+    body {
+      font-family: 'Heebo', sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .admin-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #f1c40f;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background-color: #d4ac0d;
+    }
+    .message {
+      text-align: center;
+      margin-top: 1rem;
+      color: green;
+    }
+    .error {
+      text-align: center;
+      margin-top: 1rem;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-container">
+    <h2>Yönetim Paneli</h2>
+
+    <!-- Giriş Formu -->
+    <div id="loginSection">
+      <h3>Giriş Yap</h3>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="adminEmail">Email:</label>
+          <input type="email" id="adminEmail" required />
+        </div>
+        <div class="form-group">
+          <label for="adminPassword">Şifre:</label>
+          <input type="password" id="adminPassword" required />
+        </div>
+        <button type="submit">Giriş Yap</button>
+      </form>
+      <p class="error" id="loginError"></p>
+    </div>
+
+    <!-- Fiyat Güncelleme Formu -->
+    <div id="updateSection" style="display: none;">
+      <h3>Tur Fiyatlarını Güncelle</h3>
+      <form id="updateForm">
+        <div class="form-group">
+          <label for="routeName">Tur Rotası:</label>
+          <select id="routeName" required>
+            <!-- Firebase'den rotalar dinamik olarak eklenecek -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="duration">Tur Süresi:</label>
+          <select id="duration" required>
+            <option value="1 Saat Tur">1 Saat Tur</option>
+            <option value="2 Saat Tur">2 Saat Tur</option>
+            <option value="4 Saat Tur">4 Saat Tur</option>
+            <option value="Özel Tur">Özel Tur</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="price">Yeni Fiyat (€):</label>
+          <input type="text" id="price" required />
+        </div>
+        <button type="submit">Fiyatı Güncelle</button>
+      </form>
+      <p class="message" id="updateMessage"></p>
+      <p class="error" id="updateError"></p>
+    </div>
+  </div>
+
+  <script>
+    // Yönetim paneli için gerekli referanslar
+    const loginForm = document.getElementById("loginForm");
+    const adminEmailInput = document.getElementById("adminEmail");
+    const adminPasswordInput = document.getElementById("adminPassword");
+    const loginError = document.getElementById("loginError");
+
+    const updateSection = document.getElementById("updateSection");
+    const loginSection = document.getElementById("loginSection");
+
+    const routeNameSelect = document.getElementById("routeName");
+    const durationSelect = document.getElementById("duration");
+    const priceInput = document.getElementById("price");
+    const updateForm = document.getElementById("updateForm");
+    const updateMessage = document.getElementById("updateMessage");
+    const updateError = document.getElementById("updateError");
+
+    // Firebase Authentication başlatma
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // Giriş yapıldı, güncelleme bölümünü göster
+        loginSection.style.display = "none";
+        updateSection.style.display = "block";
+        loadRoutes();
+      } else {
+        // Çıkış yapıldı veya henüz giriş yapılmadı
+        loginSection.style.display = "block";
+        updateSection.style.display = "none";
+      }
+    });
+
+    // Giriş Formu İşlemi
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = adminEmailInput.value.trim();
+      const password = adminPasswordInput.value;
+
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
+          loginError.textContent = "";
+        })
+        .catch((error) => {
+          loginError.textContent = error.message;
+        });
+    });
+
+    // Rotaları Firebase'den Çek ve Seçime Ekle
+    function loadRoutes() {
+      const routesRef = database.ref("tours/" + tourId + "/routes");
+      routesRef.once("value", (snapshot) => {
+        const routesData = snapshot.val();
+        if (routesData) {
+          Object.keys(routesData).forEach((routeName) => {
+            const option = document.createElement("option");
+            option.value = routeName;
+            option.textContent = routeName;
+            routeNameSelect.appendChild(option);
+          });
+        }
+      });
+    }
+
+    // Fiyat Güncelleme Formu İşlemi
+    updateForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const selectedRoute = routeNameSelect.value;
+      const selectedDuration = durationSelect.value;
+      const newPrice = priceInput.value.trim();
+
+      if (!selectedRoute || !selectedDuration || !newPrice) {
+        updateError.textContent = "Tüm alanları doldurun.";
+        updateMessage.textContent = "";
+        return;
+      }
+
+      // Firebase'de fiyatı güncelle
+      const priceRef = database.ref(`tours/${tourId}/routes/${selectedRoute}/${selectedDuration}`);
+      priceRef.set(newPrice)
+        .then(() => {
+          updateMessage.textContent = "Fiyat başarıyla güncellendi.";
+          updateError.textContent = "";
+          updateForm.reset();
+        })
+        .catch((error) => {
+          updateError.textContent = "Fiyat güncellenirken bir hata oluştu: " + error.message;
+          updateMessage.textContent = "";
+        });
+    });
+  </script>
+</body>
+</html>

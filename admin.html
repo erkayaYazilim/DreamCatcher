@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border-bottom: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    .admin-btn {
+      padding: 6px 10px;
+      margin-right: 5px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .approve-btn {
+      background-color: #28a745;
+      color: #fff;
+    }
+    .delete-btn {
+      background-color: #dc3545;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header" data-header>
+    <div class="container">
+      <h1 class="logo">Admin Panel</h1>
+      <button id="logoutBtn" class="btn btn-secondary" style="float:right;">Çıkış</button>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <h2>Onay Bekleyen Yorumlar</h2>
+      <table id="reviewTable">
+        <thead>
+          <tr>
+            <th>Tur ID</th>
+            <th>İsim</th>
+            <th>Puan</th>
+            <th>Yorum</th>
+            <th>İşlemler</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Onay bekleyen yorumlar eklenecek -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Firebase & app.js -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+  <script src="assets/js/app.js"></script>
+
+  <script>
+    const reviewTableBody = document.querySelector("#reviewTable tbody");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    // Sayfa yüklendiğinde, admin giriş kontrolü ve yorumları getirme
+    document.addEventListener("DOMContentLoaded", async () => {
+      // Admin kontrolü
+      auth.onAuthStateChanged((user) => {
+        if(!user) {
+          alert("Admin paneline erişmek için giriş yapmalısınız!");
+          window.location.href = "signIn.html";
+        }
+      });
+
+      // Tüm turların ID'lerini alalım
+      const toursRef = database.ref("tours");
+      toursRef.once("value", async (snapshot) => {
+        const toursData = snapshot.val();
+        if(!toursData) return;
+
+        // Her turId için /reviews/tourId altına bakıp approved=false olan yorumları listeleyelim
+        for(let tourId of Object.keys(toursData)) {
+          const reviewRef = database.ref(`reviews/${tourId}`);
+          const revSnapshot = await reviewRef.once("value");
+          const revData = revSnapshot.val();
+          if(!revData) continue;
+
+          Object.keys(revData).forEach((revKey) => {
+            const review = revData[revKey];
+            if(review.approved === false) {
+              // Tabloya ekle
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                <td>${tourId}</td>
+                <td>${review.reviewerName}</td>
+                <td>${review.stars}</td>
+                <td>${review.comment}</td>
+                <td>
+                  <button class="admin-btn approve-btn" 
+                    data-tour="${tourId}" data-key="${revKey}">Onayla</button>
+                  <button class="admin-btn delete-btn"
+                    data-tour="${tourId}" data-key="${revKey}">Sil</button>
+                </td>
+              `;
+              reviewTableBody.appendChild(row);
+            }
+          });
+        }
+      });
+    });
+
+    // Tabloya tıklanınca, butonları yakala
+    reviewTableBody.addEventListener("click", async (e) => {
+      if(e.target.classList.contains("approve-btn")) {
+        const tourId = e.target.getAttribute("data-tour");
+        const revKey = e.target.getAttribute("data-key");
+        await approveReview(tourId, revKey);
+        // Tablo satırını kaldır
+        e.target.closest("tr").remove();
+      } else if(e.target.classList.contains("delete-btn")) {
+        const tourId = e.target.getAttribute("data-tour");
+        const revKey = e.target.getAttribute("data-key");
+        await deleteReview(tourId, revKey);
+        e.target.closest("tr").remove();
+      }
+    });
+
+    // Çıkış butonu
+    logoutBtn.addEventListener("click", async () => {
+      await auth.signOut();
+      window.location.href = "signIn.html";
+    });
+
+    // Onaylama fonksiyonu
+    async function approveReview(tourId, reviewKey) {
+      // /reviews/tourId/reviewKey => approved: true yap
+      const refPath = `reviews/${tourId}/${reviewKey}`;
+      await database.ref(refPath).update({ approved: true });
+      alert("Yorum onaylandı!");
+      // Sonra puanı tekrar hesapla
+      await recalcRating(tourId);
+    }
+
+    // Silme fonksiyonu
+    async function deleteReview(tourId, reviewKey) {
+      const refPath = `reviews/${tourId}/${reviewKey}`;
+      await database.ref(refPath).remove();
+      alert("Yorum silindi!");
+    }
+  </script>
+
+</body>
+</html>

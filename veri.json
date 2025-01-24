@@ -1,0 +1,562 @@
+{
+  "tours": {
+    "balonTuru": {
+      "title": "Balon Turu",
+      "price": 249,
+      "rating": 4.3,
+      "reviewCount": 10,
+      "imageUrl": "./assets/images/balon-popular.jpg",
+      "videoUrl": "./assets/videos/balon-hero.mp4",
+      "description": "Güneşin doğuşunda Kapadokya'nın büyüleyici manzarasını balonla izleyin."
+    },
+    "atTuru": {
+      "title": "AT Turu",
+      "price": 99,
+      "rating": 4.5,
+      "reviewCount": 12,
+      "videoUrl": "https://www.ornekvideo.com/at_turu_video.mp4",
+      "routes": {
+        "Kılıçlar Valley": {
+          "1 Saat Tur": true,
+          "2 Saat Tur": true,
+          "4 Saat Tur": true,
+          "Özel Tur": true
+        },
+        "Güllüdere Valley": {
+          "1 Saat Tur": true,
+          "2 Saat Tur": true,
+          "4 Saat Tur": true,
+          "Özel Tur": true
+        },
+        "Red&Rose Valley": {
+          "1 Saat Tur": false,
+          "2 Saat Tur": true,
+          "4 Saat Tur": true,
+          "Özel Tur": true
+        },
+        "Kızıl Çukur": {
+          "1 Saat Tur": false,
+          "2 Saat Tur": false,
+          "4 Saat Tur": true,
+          "Özel Tur": true
+        },
+        "Çavuşin Village": {
+          "1 Saat Tur": false,
+          "2 Saat Tur": false,
+          "4 Saat Tur": true,
+          "Özel Tur": true
+        },
+        "Love Valley": {
+          "1 Saat Tur": false,
+          "2 Saat Tur": false,
+          "4 Saat Tur": true,
+          "Özel Tur": true
+        }
+      },
+      "priceDetails": {
+        "1Saat": "35-100",
+        "2Saat": "50-100",
+        "4Saat": "80-150",
+        "ozel": "200"
+      }
+    },
+    "atvTuru": {
+      "title": "ATV Turu",
+      "price": 80,
+      "rating": 4.5,
+      "reviewCount": 10,
+      "priceDetails": {
+  "1Saat": "35-100",
+  "2Saat": "50-100",
+  "gunBatimi": "60-100",
+  "gunDogusu": "70-100",
+  "ozel": "100"
+},
+
+      "imageUrl": "./assets/images/atv-popular.jpg",
+      "videoUrl": "./assets/videos/atv-hero.mp4",
+      "description": "Adrenalin dolu rotalarda ATV keyfini yaşayın."
+    },
+    "jeepSafari": {
+      "title": "Jeep Safari",
+      "price": 120,
+      "rating": 3.9,
+      "reviewCount": 10,
+      "priceDetails": {
+  "gunDogumu2saat": "50-120",
+  "gunDogumu4saat": "90-200",
+  "gunBatimi2saat": "60-130",
+  "gunBatimi4saat": "100-220"
+},
+      "imageUrl": "./assets/images/jeep-popular.jpg",
+      "videoUrl": "./assets/videos/jeep-hero.mp4",
+      "description": "Off-road heyecanı ve Kapadokya'nın gizemli vadilerini keşfedin."
+    },
+    "klasikAraba": {
+      "title": "Klasik Araba Turu",
+      "price": 150,
+      "rating": 4.0,
+      "reviewCount": 10,
+      "priceDetails": {
+  "gunDogumu2saat": "50-120",
+  "gunDogumu4saat": "90-200",
+  "gunBatimi2saat": "60-130",
+  "gunBatimi4saat": "100-220"
+},
+      "imageUrl": "./assets/images/klasik-popular.jpg",
+      "videoUrl": "./assets/videos/klasik-hero.mp4",
+      "description": "Nostaljik klasik arabalarla bölgenin tarihi atmosferini yaşayın."
+    },
+    "spaMasaj": {
+      "title": "Spa & Masaj Keyfi",
+      "price": 60,
+      "rating": 4.6,
+      "reviewCount": 10,
+      "priceDetails": {
+      "klasikMasaj": "80-150",
+      "baliMasaj": "120-200",
+      "medikalMasaj": "100-180",
+      "aromaterapiMasaj": "90-160",
+      "refleksolojiMasaj": "60-120",
+      "antistressMasaj": "40-80"
+    },
+      "imageUrl": "./assets/images/spa-popular.jpg",
+      "videoUrl": "./assets/videos/spa-hero.mp4",
+      "description": "Yoğun tempodan uzaklaşıp rahatlamanın tadını çıkarın."
+    }
+  },
+  "reviews": {
+    "balonTuru": {
+      "review1": {
+        "reviewerName": "Ahmet",
+        "stars": 5,
+        "comment": "Harika bir deneyim, unutulmaz anlar yaşadım.",
+        "approved": true,
+        "createdAt": 1685000000000
+      },
+      "review2": {
+        "reviewerName": "Zeynep",
+        "stars": 4,
+        "comment": "Manzara gerçekten büyüleyiciydi, keyif aldım.",
+        "approved": true,
+        "createdAt": 1685100000000
+      },
+      "review3": {
+        "reviewerName": "Murat",
+        "stars": 4,
+        "comment": "Fiyat biraz yüksek olsa da deneyim harikaydı.",
+        "approved": true,
+        "createdAt": 1685200000000
+      },
+      "review4": {
+        "reviewerName": "Elif",
+        "stars": 4,
+        "comment": "Rehber çok ilgiliydi, güzel bir turdu.",
+        "approved": true,
+        "createdAt": 1685300000000
+      },
+      "review5": {
+        "reviewerName": "Hasan",
+        "stars": 4,
+        "comment": "Balon turunu herkese tavsiye ederim.",
+        "approved": true,
+        "createdAt": 1685400000000
+      },
+      "review6": {
+        "reviewerName": "Selma",
+        "stars": 5,
+        "comment": "Göz kamaştırıcı manzaralar eşliğinde muhteşem bir deneyim.",
+        "approved": true,
+        "createdAt": 1685500000000
+      },
+      "review7": {
+        "reviewerName": "Barış",
+        "stars": 4,
+        "comment": "Hafızama kazındı, kesinlikle tekrar yaparım.",
+        "approved": true,
+        "createdAt": 1685600000000
+      },
+      "review8": {
+        "reviewerName": "Derya",
+        "stars": 5,
+        "comment": "Muhteşem bir başlangıç için ideal.",
+        "approved": true,
+        "createdAt": 1685700000000
+      },
+      "review9": {
+        "reviewerName": "Okan",
+        "stars": 4,
+        "comment": "Fiyat performans açısından beklentimin üstündeydi.",
+        "approved": true,
+        "createdAt": 1685800000000
+      },
+      "review10": {
+        "reviewerName": "Gizem",
+        "stars": 4,
+        "comment": "Deneyim güzel, modern ve konforluydu.",
+        "approved": true,
+        "createdAt": 1685900000000
+      }
+    },
+    "atTuru": {
+      "review1": {
+        "reviewerName": "Gamze",
+        "stars": 5,
+        "comment": "Gün batımında at turu yapmak inanılmaz romantik!",
+        "approved": true,
+        "createdAt": 1686000000000
+      },
+      "review2": {
+        "reviewerName": "Kerem",
+        "stars": 4,
+        "comment": "Atlar çok sakin ve bakımlıydı.",
+        "approved": true,
+        "createdAt": 1686100000000
+      },
+      "review3": {
+        "reviewerName": "Dilara",
+        "stars": 3,
+        "comment": "Tur biraz kısa sürdü ama yine de güzeldi.",
+        "approved": true,
+        "createdAt": 1686200000000
+      },
+      "review4": {
+        "reviewerName": "Erdem",
+        "stars": 4,
+        "comment": "Gün batımı manzarası eşsizdi, tavsiye ederim.",
+        "approved": true,
+        "createdAt": 1686300000000
+      },
+      "review5": {
+        "reviewerName": "Deniz",
+        "stars": 4,
+        "comment": "Fotoğraf çekmeyi sevenler için harika bir tur!",
+        "approved": true,
+        "createdAt": 1686400000000
+      },
+      "review6": {
+        "reviewerName": "Cem",
+        "stars": 4,
+        "comment": "Sakin bir ortam ve kaliteli rehberlik.",
+        "approved": true,
+        "createdAt": 1686500000000
+      },
+      "review7": {
+        "reviewerName": "Ayşe",
+        "stars": 5,
+        "comment": "At turu romantizmin tanımını yeniden yazdı.",
+        "approved": true,
+        "createdAt": 1686600000000
+      },
+      "review8": {
+        "reviewerName": "Emre",
+        "stars": 4,
+        "comment": "Her şey tam zamanında, keyifli bir tur.",
+        "approved": true,
+        "createdAt": 1686700000000
+      },
+      "review9": {
+        "reviewerName": "Sinem",
+        "stars": 3,
+        "comment": "İyi fakat daha uzun olması beklenebilirdi.",
+        "approved": true,
+        "createdAt": 1686800000000
+      },
+      "review10": {
+        "reviewerName": "Mete",
+        "stars": 4,
+        "comment": "Genel olarak hoş bir deneyimdi.",
+        "approved": true,
+        "createdAt": 1686900000000
+      }
+    },
+    "atvTuru": {
+      "review1": {
+        "reviewerName": "Ali",
+        "stars": 5,
+        "comment": "Adrenalin dolu bir deneyim, çok eğlendik.",
+        "approved": true,
+        "createdAt": 1687000000000
+      },
+      "review2": {
+        "reviewerName": "Selin",
+        "stars": 4,
+        "comment": "Güvenlik önlemleri iyiydi, tavsiye ederim.",
+        "approved": true,
+        "createdAt": 1687100000000
+      },
+      "review3": {
+        "reviewerName": "Ömer",
+        "stars": 4,
+        "comment": "Biraz tozlu ama heyecan verici bir turdu.",
+        "approved": true,
+        "createdAt": 1687200000000
+      },
+      "review4": {
+        "reviewerName": "Buse",
+        "stars": 4,
+        "comment": "Rehber eşliğinde rota güzeldi.",
+        "approved": true,
+        "createdAt": 1687300000000
+      },
+      "review5": {
+        "reviewerName": "Cenk",
+        "stars": 5,
+        "comment": "Arkadaşlarımla unutulmaz anlar yaşadık.",
+        "approved": true,
+        "createdAt": 1687400000000
+      },
+      "review6": {
+        "reviewerName": "Zeynep",
+        "stars": 4,
+        "comment": "Fiyat ve keyif olarak ideal.",
+        "approved": true,
+        "createdAt": 1687500000000
+      },
+      "review7": {
+        "reviewerName": "Mert",
+        "stars": 5,
+        "comment": "Tüm adrenalin dolu dakikalar unutulmazdı.",
+        "approved": true,
+        "createdAt": 1687600000000
+      },
+      "review8": {
+        "reviewerName": "Leyla",
+        "stars": 4,
+        "comment": "Doğayla iç içe olmak harikaydı.",
+        "approved": true,
+        "createdAt": 1687700000000
+      },
+      "review9": {
+        "reviewerName": "Eren",
+        "stars": 4,
+        "comment": "Keyifli, macera dolu bir gün geçirdik.",
+        "approved": true,
+        "createdAt": 1687800000000
+      },
+      "review10": {
+        "reviewerName": "Damla",
+        "stars": 5,
+        "comment": "Her saniyesine değerdi, kesinlikle tekrar yaparım.",
+        "approved": true,
+        "createdAt": 1687900000000
+      }
+    },
+    "jeepSafari": {
+      "review1": {
+        "reviewerName": "Aylin",
+        "stars": 3,
+        "comment": "Off-road yollar sarsıcıydı fakat manzara harikaydı.",
+        "approved": true,
+        "createdAt": 1688000000000
+      },
+      "review2": {
+        "reviewerName": "Tolga",
+        "stars": 4,
+        "comment": "Heyecan verici ve keyifli bir tur deneyimi.",
+        "approved": true,
+        "createdAt": 1688100000000
+      },
+      "review3": {
+        "reviewerName": "Berna",
+        "stars": 4,
+        "comment": "Farklı vadileri keşfetmek müthişti.",
+        "approved": true,
+        "createdAt": 1688200000000
+      },
+      "review4": {
+        "reviewerName": "Furkan",
+        "stars": 3,
+        "comment": "Yağışlı havada biraz zorluk yaşadık.",
+        "approved": true,
+        "createdAt": 1688300000000
+      },
+      "review5": {
+        "reviewerName": "Meltem",
+        "stars": 5,
+        "comment": "Jeep Safari hayatımda ilk kez, bayıldım!",
+        "approved": true,
+        "createdAt": 1688400000000
+      },
+      "review6": {
+        "reviewerName": "Onur",
+        "stars": 4,
+        "comment": "Tüm aktiviteler heyecan vericiydi.",
+        "approved": true,
+        "createdAt": 1688500000000
+      },
+      "review7": {
+        "reviewerName": "Derya",
+        "stars": 4,
+        "comment": "Her saniyesinde adrenalin var.",
+        "approved": true,
+        "createdAt": 1688600000000
+      },
+      "review8": {
+        "reviewerName": "Can",
+        "stars": 3,
+        "comment": "Ortalama bir deneyimdi, bazı anlar güzeldi.",
+        "approved": true,
+        "createdAt": 1688700000000
+      },
+      "review9": {
+        "reviewerName": "Sevgi",
+        "stars": 4,
+        "comment": "Tur rehberi çok bilgiliydi.",
+        "approved": true,
+        "createdAt": 1688800000000
+      },
+      "review10": {
+        "reviewerName": "Baran",
+        "stars": 4,
+        "comment": "Genel olarak keyifli ama daha iyi olabilirdi.",
+        "approved": true,
+        "createdAt": 1688900000000
+      }
+    },
+    "klasikAraba": {
+      "review1": {
+        "reviewerName": "Serhat",
+        "stars": 4,
+        "comment": "Klasik arabalarla çekilen fotoğraflar harikaydı.",
+        "approved": true,
+        "createdAt": 1689000000000
+      },
+      "review2": {
+        "reviewerName": "Tuğba",
+        "stars": 4,
+        "comment": "Nostaljik bir yolculuktu, keyif aldık.",
+        "approved": true,
+        "createdAt": 1689100000000
+      },
+      "review3": {
+        "reviewerName": "Umut",
+        "stars": 4,
+        "comment": "Kısa sürdü ama güzel anılar bıraktı.",
+        "approved": true,
+        "createdAt": 1689200000000
+      },
+      "review4": {
+        "reviewerName": "Sena",
+        "stars": 3,
+        "comment": "Arabalar harikaydı fakat tur süresi yeterli değildi.",
+        "approved": true,
+        "createdAt": 1689300000000
+      },
+      "review5": {
+        "reviewerName": "Can",
+        "stars": 5,
+        "comment": "Evlilik teklifi için unutulmaz bir organizasyondur.",
+        "approved": true,
+        "createdAt": 1689400000000
+      },
+      "review6": {
+        "reviewerName": "Mete",
+        "stars": 4,
+        "comment": "Profesyonel bir deneyim, atmosfer mükemmeldi.",
+        "approved": true,
+        "createdAt": 1689500000000
+      },
+      "review7": {
+        "reviewerName": "Burcu",
+        "stars": 4,
+        "comment": "Nostalji ve konfor bir arada, tavsiye ederim.",
+        "approved": true,
+        "createdAt": 1689600000000
+      },
+      "review8": {
+        "reviewerName": "Deniz",
+        "stars": 3,
+        "comment": "Tur deneyimi genel olarak tatmin ediciydi.",
+        "approved": true,
+        "createdAt": 1689700000000
+      },
+      "review9": {
+        "reviewerName": "Ece",
+        "stars": 4,
+        "comment": "Unutulmaz bir deneyim yaşadık, teşekkürler.",
+        "approved": true,
+        "createdAt": 1689800000000
+      },
+      "review10": {
+        "reviewerName": "Ozan",
+        "stars": 4,
+        "comment": "Klasik arabanın verdiği nostalji çok güzeldi.",
+        "approved": true,
+        "createdAt": 1689900000000
+      }
+    },
+    "spaMasaj": {
+      "review1": {
+        "reviewerName": "Ayşe",
+        "stars": 5,
+        "comment": "Kendimi yeniden doğmuş gibi hissettim.",
+        "approved": true,
+        "createdAt": 1690000000000
+      },
+      "review2": {
+        "reviewerName": "Gökhan",
+        "stars": 4,
+        "comment": "Ortam çok temiz ve huzurluydu.",
+        "approved": true,
+        "createdAt": 1690100000000
+      },
+      "review3": {
+        "reviewerName": "Bora",
+        "stars": 5,
+        "comment": "Profesyonel masaj terapisti sayesinde mükemmel bir deneyim yaşadım.",
+        "approved": true,
+        "createdAt": 1690200000000
+      },
+      "review4": {
+        "reviewerName": "Ece",
+        "stars": 4,
+        "comment": "Rahatlatıcı müzikler eşliğinde harika bir spa deneyimi.",
+        "approved": true,
+        "createdAt": 1690300000000
+      },
+      "review5": {
+        "reviewerName": "Sibel",
+        "stars": 5,
+        "comment": "Yoğun bir günün ardından tam da ihtiyaç duyduğum rahatlama.",
+        "approved": true,
+        "createdAt": 1690400000000
+      },
+      "review6": {
+        "reviewerName": "Kemal",
+        "stars": 4,
+        "comment": "Hizmet kalitesi ve ortam mükemmeldi.",
+        "approved": true,
+        "createdAt": 1690500000000
+      },
+      "review7": {
+        "reviewerName": "Elif",
+        "stars": 5,
+        "comment": "Güzel dokunuşlarla dolu, unutulmaz bir spa keyfi.",
+        "approved": true,
+        "createdAt": 1690600000000
+      },
+      "review8": {
+        "reviewerName": "Murat",
+        "stars": 4,
+        "comment": "Her detay özenle düşünülmüş, teşekkür ederim.",
+        "approved": true,
+        "createdAt": 1690700000000
+      },
+      "review9": {
+        "reviewerName": "Ceylan",
+        "stars": 5,
+        "comment": "Rahatlamak için mükemmel bir mekan, kesinlikle tavsiye ederim.",
+        "approved": true,
+        "createdAt": 1690800000000
+      },
+      "review10": {
+        "reviewerName": "Hasan",
+        "stars": 5,
+        "comment": "Her şey kusursuzdu, kendimi tamamen yenilenmiş hissettim.",
+        "approved": true,
+        "createdAt": 1690900000000
+      }
+    }
+  }
+}
